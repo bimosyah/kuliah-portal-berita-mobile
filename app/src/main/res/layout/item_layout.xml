@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:paddingStart="5dp"
+    android:paddingEnd="5dp"
+    android:paddingBottom="2dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="50dp"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardCornerRadius="5dp">
+
+        <RelativeLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:foreground="?android:attr/selectableItemBackground">
+
+            <ImageView
+                android:padding="10dp"
+                android:id="@+id/gambar_artikel"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/tv_judul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/gambar_artikel"
+                android:text="COBABCOAJSL"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_isi"
+                android:layout_below="@+id/tv_judul"
+                android:layout_toEndOf="@+id/gambar_artikel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="COBABCOAJSL"
+                android:textSize="11sp" />
+
+            <ImageView
+                android:id="@+id/gambar_jam"
+                android:layout_marginTop="100dp"
+                android:layout_marginLeft="135dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/ic_access_time_grey_24dp"/>
+
+            <TextView
+                android:id="@+id/tv_tanggal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="99dp"
+                android:layout_marginLeft="5dp"
+                android:textSize="12sp"
+                android:text="Tanggal"
+                android:layout_toEndOf="@+id/gambar_jam"/>
+
+            <ImageView
+                android:id="@+id/gambar_komen"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_comment_grey_24dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="133dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_komen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="133dp"
+                android:layout_marginLeft="5dp"
+                android:textSize="12sp"
+                android:text="10"
+                android:layout_toEndOf="@+id/gambar_komen"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>
