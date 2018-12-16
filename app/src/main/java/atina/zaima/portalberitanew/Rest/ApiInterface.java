@@ -2,19 +2,15 @@ package atina.zaima.portalberitanew.Rest;
 
 import java.util.List;
 
-import atina.zaima.portalberitanew.Model.Artikel;
 import atina.zaima.portalberitanew.Model.GetArtikel;
 import atina.zaima.portalberitanew.Model.Komentar;
-import atina.zaima.portalberitanew.Model.PhotoResult;
-import okhttp3.MultipartBody;
+import atina.zaima.portalberitanew.Model.Image;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
@@ -31,8 +27,9 @@ public interface ApiInterface {
             @Field("komentar") String komentar
     );
 
-    @Multipart
+    @FormUrlEncoded
     @POST("upload.php")
-    Call<PhotoResult> uploadImage(@Part MultipartBody.Part file);
+    Call<Image> uploadImage(@Field("title") String title,
+                            @Field("image") String image);
 
 }

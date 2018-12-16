@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 
-import atina.zaima.portalberitanew.Model.Artikel;
+import atina.zaima.portalberitanew.Model.Image;
 import atina.zaima.portalberitanew.Rest.ApiClient;
 import atina.zaima.portalberitanew.Rest.ApiInterface;
 import retrofit2.Call;
@@ -35,7 +35,7 @@ public class CameraActivity extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.image_camera);
 
         Intent intent = getIntent();
-        bitmap = (Bitmap) intent.getParcelableExtra("BitmapImage");
+        bitmap = intent.getParcelableExtra("BitmapImage");
         imageView.setImageBitmap(bitmap);
         imageView.setRotation(90);
 
@@ -46,22 +46,27 @@ public class CameraActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String _judul = judul.getText().toString();
-                String _artikel = artikel.getText().toString();
-                String image = imageToString();
-                ApiInterface apiInterface = ApiClient.getClint().create(ApiInterface.class);
-                Call<Artikel> call = apiInterface.insertBerita(_judul,_artikel,image);
-                call.enqueue(new Callback<Artikel>() {
-                    @Override
-                    public void onResponse(Call<Artikel> call, Response<Artikel> response) {
-                        Log.d("keluar",response.message());
-                    }
+                uploadImage();
+            }
+        });
+    }
 
-                    @Override
-                    public void onFailure(Call<Artikel> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
+    private void uploadImage()
+    {
+        String image = imageToString();
+        String title = judul.getText().toString();
+        ApiInterface apiInterface = ApiClient.getClint().create(ApiInterface.class);
+        Call<Image> call = apiInterface.uploadImage(title,image);
+        call.enqueue(new Callback<Image>() {
+            @Override
+            public void onResponse(Call<Image> call, Response<Image> response) {
+                Image image = response.body();
+                Toast.makeText(CameraActivity.this,"Server response = " + image.getResponse(),Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<Image> call, Throwable t) {
+                Log.d("errornya ",t.getMessage());
             }
         });
     }
