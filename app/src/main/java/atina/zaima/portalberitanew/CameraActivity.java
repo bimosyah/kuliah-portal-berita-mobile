@@ -13,7 +13,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Random;
 
+import atina.zaima.portalberitanew.Helper.HelperListArtikel;
 import atina.zaima.portalberitanew.Model.Image;
 import atina.zaima.portalberitanew.Rest.ApiClient;
 import atina.zaima.portalberitanew.Rest.ApiInterface;
@@ -24,6 +26,7 @@ import retrofit2.Response;
 public class CameraActivity extends AppCompatActivity {
 
     ImageView imageView;
+    HelperListArtikel helperListArtikel;
     EditText artikel,judul;
     Button submit;
     Bitmap bitmap;
@@ -33,6 +36,7 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
 
         imageView = (ImageView) findViewById(R.id.image_camera);
+        helperListArtikel = new HelperListArtikel(this);
 
         Intent intent = getIntent();
         bitmap = intent.getParcelableExtra("BitmapImage");
@@ -46,15 +50,24 @@ public class CameraActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadImage();
+                String _judul = judul.getText().toString();
+                String _artikel = artikel.getText().toString();
+                Random random = new Random();
+
+                int id = random.nextInt(10000);
+                Boolean insert = helperListArtikel.insert(String.valueOf(id),_judul,_artikel);
+                if (insert == true ){
+                    uploadImage(String.valueOf(random));
+                    Toast.makeText(getApplicationContext(), "Insert Success!", Toast.LENGTH_LONG).show();
+                }
             }
         });
+
     }
 
-    private void uploadImage()
+    private void uploadImage(String title)
     {
         String image = imageToString();
-        String title = judul.getText().toString();
         ApiInterface apiInterface = ApiClient.getClint().create(ApiInterface.class);
         Call<Image> call = apiInterface.uploadImage(title,image);
         call.enqueue(new Callback<Image>() {
@@ -78,4 +91,5 @@ public class CameraActivity extends AppCompatActivity {
         byte[] imgByte = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(imgByte,Base64.DEFAULT);
     }
+
 }

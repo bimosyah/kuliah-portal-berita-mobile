@@ -27,8 +27,8 @@
         <activity
             android:name=".DetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Model.login.LoginActivity" />
-        <activity android:name=".Model.login.RegisterActivity" />
+        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".login.RegisterActivity" />
         <activity android:name=".CameraActivity" />
         <activity android:name=".ListInputArtikelActivity"></activity>
     </application>

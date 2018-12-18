@@ -1,4 +1,4 @@
-package atina.zaima.portalberitanew.Model.login;
+package atina.zaima.portalberitanew.login;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import atina.zaima.portalberitanew.Helper.HelperLogin;
 import atina.zaima.portalberitanew.MainActivity;
 import atina.zaima.portalberitanew.R;
 
@@ -18,7 +19,7 @@ public class LoginActivity extends AppCompatActivity{
     Button btn_login;
     TextView btn_register;
     Intent i;
-    DataHelperLogin dbHelper;
+    HelperLogin dbHelper;
     Cursor cursor;
 
     @Override
@@ -26,7 +27,7 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        dbHelper = new DataHelperLogin(this);
+        dbHelper = new HelperLogin(this);
 
         username = (EditText) findViewById(R.id.editTextUsername);
         password = (EditText) findViewById(R.id.editTextPassword);

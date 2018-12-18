@@ -1,4 +1,4 @@
-package atina.zaima.portalberitanew.Model.login;
+package atina.zaima.portalberitanew.Helper;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,13 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DataHelperLogin extends SQLiteOpenHelper {
+public class HelperLogin extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "login2.db";
     private static final int DB_VERSION = 2;
     SQLiteDatabase db = this.getWritableDatabase();
 
-    public DataHelperLogin(Context context) {
+    public HelperLogin(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
