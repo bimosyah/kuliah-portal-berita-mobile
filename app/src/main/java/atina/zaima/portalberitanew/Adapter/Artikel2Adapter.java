@@ -43,8 +43,9 @@ public class Artikel2Adapter extends RecyclerView.Adapter<Artikel2Adapter.MyView
         Log.d("idnya",id);
         holder.judul.setText(mArtikels.get(position).getJudul());
         holder.isi.setText(mArtikels.get(position).getBerita());
-        Picasso.get().
-                load(ApiClient.BASE_URL_IMG2+mArtikels.get(position).getGambar());
+        Picasso.get()
+                .load(ApiClient.BASE_URL_IMG2+mArtikels.get(position).getGambar())
+                .into(holder.image);
     }
 
     @Override
