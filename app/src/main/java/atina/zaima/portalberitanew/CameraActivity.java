@@ -62,6 +62,7 @@ public class CameraActivity extends AppCompatActivity {
             public void onResponse(Call<Image> call, Response<Image> response) {
                 Image image = response.body();
                 Toast.makeText(CameraActivity.this,"Server response = " + image.getResponse(),Toast.LENGTH_LONG).show();
+                finish();
             }
 
             @Override

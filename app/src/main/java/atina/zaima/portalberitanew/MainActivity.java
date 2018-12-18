@@ -107,8 +107,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_camera:
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent,1);
+//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                startActivityForResult(intent,1);
+                Intent intent = new Intent(getApplicationContext(),ListInputArtikelActivity.class);
+                startActivity(intent);
                 break;
             case R.id.nav_keluar:
                 finishAndRemoveTask();

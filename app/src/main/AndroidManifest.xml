@@ -30,6 +30,7 @@
         <activity android:name=".Model.login.LoginActivity" />
         <activity android:name=".Model.login.RegisterActivity" />
         <activity android:name=".CameraActivity" />
+        <activity android:name=".ListInputArtikelActivity"></activity>
     </application>
 
 </manifest>
