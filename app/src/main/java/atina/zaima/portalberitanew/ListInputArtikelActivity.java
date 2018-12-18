@@ -75,7 +75,8 @@ public class ListInputArtikelActivity extends AppCompatActivity {
             String judul = cursor.getString(1);
             String isi = cursor.getString(2);
             String gambar = cursor.getString(3);
-            artikel2 = new Artikel2(id,judul,isi,gambar);
+            String kategori = cursor.getString(4);
+            artikel2 = new Artikel2(id,judul,isi,gambar,kategori);
             mArtikel2s.add(artikel2);
         }
 

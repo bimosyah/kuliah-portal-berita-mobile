@@ -24,6 +24,7 @@ import java.util.List;
 import atina.zaima.portalberitanew.Adapter.ArtikelAdapter;
 import atina.zaima.portalberitanew.Model.Artikel;
 import atina.zaima.portalberitanew.Model.GetArtikel;
+import atina.zaima.portalberitanew.Model.Kategori;
 import atina.zaima.portalberitanew.Rest.ApiClient;
 import atina.zaima.portalberitanew.Rest.ApiInterface;
 import retrofit2.Call;
@@ -105,11 +106,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Intent intent;
         switch (menuItem.getItemId()) {
             case R.id.nav_camera:
 //                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //                startActivityForResult(intent,1);
-                Intent intent = new Intent(getApplicationContext(),ListInputArtikelActivity.class);
+                intent = new Intent(getApplicationContext(),ListInputArtikelActivity.class);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                startActivity(intent);
+                break;
+            case R.id.nav_kategori:
+                intent = new Intent(getApplicationContext(),KategoriActivity.class);
+                drawerLayout.closeDrawer(GravityCompat.START);
                 startActivity(intent);
                 break;
             case R.id.nav_keluar:

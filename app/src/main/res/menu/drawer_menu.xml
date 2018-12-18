@@ -8,6 +8,10 @@
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_photo_camera_black_24dp"
             android:title="Berita" />
+        <item
+            android:id="@+id/nav_kategori"
+            android:icon="@drawable/ic_assessment"
+            android:title="Kategori" />
     </group>
 
     <item android:title="Aplikasi">

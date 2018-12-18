@@ -33,6 +33,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView isi,judul,komentar;
     ApiInterface mApiInterface;
     List<Komentar> komentars;
+    String path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +57,14 @@ public class DetailActivity extends AppCompatActivity {
         Intent mIntent = getIntent();
         final String id_artikel = mIntent.getStringExtra("id");
 
+        if (mIntent.getStringExtra("asal").equals("artikel2")){
+            path = ApiClient.BASE_URL_IMG2;
+        }else {
+            path = ApiClient.BASE_URL_IMG;
+        }
+
         Picasso.get()
-                .load(ApiClient.BASE_URL_IMG + mIntent.getStringExtra("foto"))
+                .load(path + mIntent.getStringExtra("foto"))
                 .into(imageView);
         judul.setText(mIntent.getStringExtra("judul"));
         isi.setText(Html.fromHtml(mIntent.getStringExtra("isi")).toString());

@@ -37,7 +37,7 @@ public class ArtikelAdapter extends RecyclerView.Adapter<ArtikelAdapter.MyViewHo
     public ArtikelAdapter.MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View mView = LayoutInflater
                 .from(viewGroup.getContext())
-                .inflate(R.layout.item_layout, viewGroup, false);
+                .inflate(R.layout.item_layout_artikel, viewGroup, false);
         return new MyViewHolder(mView);
     }
 
@@ -62,6 +62,7 @@ public class ArtikelAdapter extends RecyclerView.Adapter<ArtikelAdapter.MyViewHo
             @Override
             public void onClick(View v) {
                 Intent mIntent = new Intent(v.getContext(),DetailActivity.class);
+                mIntent.putExtra("asal","artikel1");
                 mIntent.putExtra("id",mArtikels.get(position).getId_artikel());
                 mIntent.putExtra("judul",mArtikels.get(position).getJudul());
                 mIntent.putExtra("isi",mArtikels.get(position).getIsi());

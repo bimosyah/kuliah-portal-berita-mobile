@@ -7,14 +7,19 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.util.List;
 import java.util.Random;
 
+import atina.zaima.portalberitanew.Helper.HelperKategori;
 import atina.zaima.portalberitanew.Helper.HelperListArtikel;
 import atina.zaima.portalberitanew.Model.Image;
 import atina.zaima.portalberitanew.Rest.ApiClient;
@@ -23,13 +28,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CameraActivity extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     ImageView imageView;
     HelperListArtikel helperListArtikel;
     EditText artikel,judul;
     Button submit;
     Bitmap bitmap;
+    Spinner spinner;
+    String kategori;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +44,8 @@ public class CameraActivity extends AppCompatActivity {
 
         imageView = (ImageView) findViewById(R.id.image_camera);
         helperListArtikel = new HelperListArtikel(this);
+        spinner = findViewById(R.id.spinner_kategori);
+        spinner.setOnItemSelectedListener(this);
 
         Intent intent = getIntent();
         bitmap = intent.getParcelableExtra("BitmapImage");
@@ -46,6 +55,7 @@ public class CameraActivity extends AppCompatActivity {
         judul = findViewById(R.id.judul);
         artikel = findViewById(R.id.artikel);
 
+        loadSpinnterData();
         submit = findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +66,7 @@ public class CameraActivity extends AppCompatActivity {
 
                 int id = random.nextInt(10000);
                 String _namaGambar = String.valueOf(id) + ".jpg";
-                Boolean insert = helperListArtikel.insert(String.valueOf(id),_judul,_artikel,_namaGambar);
+                Boolean insert = helperListArtikel.insert(String.valueOf(id),_judul,_artikel,_namaGambar,kategori);
                 if (insert == true ){
                     uploadImage(String.valueOf(id));
                     Toast.makeText(getApplicationContext(), "Insert Success!", Toast.LENGTH_LONG).show();
@@ -64,6 +74,25 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void loadSpinnterData() {
+        // database handler
+        HelperKategori db = new HelperKategori(getApplicationContext());
+
+        // Spinner Drop down elements
+        List<String> lables = db.getAllLabels();
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, lables);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
     }
 
     private void uploadImage(String title)
@@ -93,4 +122,13 @@ public class CameraActivity extends AppCompatActivity {
         return Base64.encodeToString(imgByte,Base64.DEFAULT);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        kategori = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

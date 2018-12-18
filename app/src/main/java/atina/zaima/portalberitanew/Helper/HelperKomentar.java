@@ -2,37 +2,33 @@ package atina.zaima.portalberitanew.Helper;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class HelperListArtikel extends SQLiteOpenHelper {
-    private static final String DB_NAME = "artikel.db";
+public class HelperKomentar extends SQLiteOpenHelper {
+    private static final String DB_NAME = "komentar.db";
     private static final int DB_VERSION = 2;
     SQLiteDatabase db = this.getWritableDatabase();
 
-    public HelperListArtikel(Context context) {
+    public HelperKomentar(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table artikel(id text primary key, judul text, berita text, gambar text, kategori text)");
+        db.execSQL("create table komentar(id text primary key, komentar text)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("drop table if exists artikel");
+        db.execSQL("drop table if exists komentar");
     }
 
-    public boolean insert(String id, String judul, String berita, String gambar,String kategori){
+    public boolean insert(String id, String komentar){
         ContentValues contentValues = new ContentValues();
         contentValues.put("id",id);
-        contentValues.put("judul",judul);
-        contentValues.put("berita",berita);
-        contentValues.put("gambar",gambar);
-        contentValues.put("kategori",kategori);
-        long insert = db.insert("artikel",null,contentValues);
+        contentValues.put("komentar",komentar);
+        long insert = db.insert("komentar",null,contentValues);
         if (insert == -1)
             return false;
         else

@@ -1,13 +1,22 @@
 package atina.zaima.portalberitanew.Model;
 
 public class Artikel2 {
-    String id, judul, berita,gambar;
+    String id, judul, berita,gambar,kategori;
 
-    public Artikel2(String id, String judul, String berita, String gambar) {
+    public Artikel2(String id, String judul, String berita, String gambar, String kategori) {
         this.id = id;
         this.judul = judul;
         this.berita = berita;
         this.gambar = gambar;
+        this.kategori = kategori;
+    }
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
     }
 
     public String getGambar() {

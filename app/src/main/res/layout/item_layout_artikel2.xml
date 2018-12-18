@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="170dp"
+    android:layout_height="wrap_content"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:paddingStart="5dp"
     android:paddingEnd="5dp"
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@+id/gambar_artikel"
-                android:text="COBABCOAJSL"
+                android:text="Judul"
                 android:textColor="@android:color/black"
                 android:textSize="15sp" />
 
@@ -45,45 +45,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="COBABCOAJSL"
+                android:text="Isi"
                 android:textSize="11sp" />
 
-            <ImageView
-                android:id="@+id/gambar_jam"
-                android:layout_marginTop="100dp"
-                android:layout_marginLeft="135dp"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:src="@drawable/ic_access_time_grey_24dp"/>
-
             <TextView
-                android:id="@+id/tv_tanggal"
+                android:id="@+id/tv_kategori"
+                android:layout_below="@+id/tv_isi"
+                android:layout_toEndOf="@+id/gambar_artikel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="99dp"
-                android:layout_marginLeft="5dp"
-                android:textSize="12sp"
-                android:text="Tanggal"
-                android:layout_toEndOf="@+id/gambar_jam"/>
+                android:layout_marginStart="10dp"
+                android:text="Kategori : "
+                android:textSize="10sp" />
 
-            <ImageView
-                android:id="@+id/gambar_komen"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_comment_grey_24dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="133dp"
-                />
-
-            <TextView
-                android:id="@+id/tv_komen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="133dp"
-                android:layout_marginLeft="5dp"
-                android:textSize="12sp"
-                android:text="10"
-                android:layout_toEndOf="@+id/gambar_komen"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>
