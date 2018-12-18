@@ -55,9 +55,10 @@ public class CameraActivity extends AppCompatActivity {
                 Random random = new Random();
 
                 int id = random.nextInt(10000);
-                Boolean insert = helperListArtikel.insert(String.valueOf(id),_judul,_artikel);
+                String _namaGambar = String.valueOf(id) + ".jpg";
+                Boolean insert = helperListArtikel.insert(String.valueOf(id),_judul,_artikel,_namaGambar);
                 if (insert == true ){
-                    uploadImage(String.valueOf(random));
+                    uploadImage(String.valueOf(id));
                     Toast.makeText(getApplicationContext(), "Insert Success!", Toast.LENGTH_LONG).show();
                 }
             }

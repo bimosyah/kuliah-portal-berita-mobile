@@ -17,7 +17,7 @@ public class HelperListArtikel extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table artikel(id text primary key, judul text, berita text)");
+        db.execSQL("create table artikel(id text primary key, judul text, berita text, gambar text)");
     }
 
     @Override
@@ -25,11 +25,12 @@ public class HelperListArtikel extends SQLiteOpenHelper {
         db.execSQL("drop table if exists artikel");
     }
 
-    public boolean insert(String id, String judul, String berita){
+    public boolean insert(String id, String judul, String berita, String gambar){
         ContentValues contentValues = new ContentValues();
         contentValues.put("id",id);
         contentValues.put("judul",judul);
         contentValues.put("berita",berita);
+        contentValues.put("gambar",gambar);
         long insert = db.insert("artikel",null,contentValues);
         if (insert == -1)
             return false;

@@ -3,6 +3,7 @@ package atina.zaima.portalberitanew.Adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,10 +40,11 @@ public class Artikel2Adapter extends RecyclerView.Adapter<Artikel2Adapter.MyView
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         String id = mArtikels.get(position).getId();
+        Log.d("idnya",id);
         holder.judul.setText(mArtikels.get(position).getJudul());
         holder.isi.setText(mArtikels.get(position).getBerita());
         Picasso.get().
-                load(ApiClient.BASE_URL_IMG2+id);
+                load(ApiClient.BASE_URL_IMG2+mArtikels.get(position).getGambar());
     }
 
     @Override

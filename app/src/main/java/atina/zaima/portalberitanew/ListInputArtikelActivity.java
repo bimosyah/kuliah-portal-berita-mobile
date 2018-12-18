@@ -13,14 +13,18 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import java.sql.Ref;
+import java.util.ArrayList;
 import java.util.List;
 
+import atina.zaima.portalberitanew.Adapter.Artikel2Adapter;
 import atina.zaima.portalberitanew.Helper.HelperListArtikel;
 import atina.zaima.portalberitanew.Model.Artikel;
 import atina.zaima.portalberitanew.Model.Artikel2;
 
 public class ListInputArtikelActivity extends AppCompatActivity {
 
+    String[] list;
     HelperListArtikel helper;
     FloatingActionButton fab;
     Cursor cursor;
@@ -28,6 +32,7 @@ public class ListInputArtikelActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     List<Artikel2> mArtikel2s;
+    Artikel2 artikel2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +48,12 @@ public class ListInputArtikelActivity extends AppCompatActivity {
             }
         });
 
+        mArtikel2s = new ArrayList<>();
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_input_artikel);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
 
         helper = new HelperListArtikel(this);
 
+        RefreshList();
     }
 
     @Override
@@ -65,6 +70,17 @@ public class ListInputArtikelActivity extends AppCompatActivity {
     private void RefreshList(){
         SQLiteDatabase db = helper.getReadableDatabase();
         cursor = db.rawQuery("SELECT * FROM artikel",null);
+        while (cursor.moveToNext()){
+            String id = cursor.getString(0);
+            String judul = cursor.getString(1);
+            String isi = cursor.getString(2);
+            String gambar = cursor.getString(3);
+            artikel2 = new Artikel2(id,judul,isi,gambar);
+            mArtikel2s.add(artikel2);
+        }
 
+        mAdapter = new Artikel2Adapter(mArtikel2s,getApplicationContext());
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mAdapter);
     }
 }
